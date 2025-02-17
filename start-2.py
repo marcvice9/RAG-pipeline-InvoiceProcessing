@@ -20,11 +20,11 @@ res = ollama.chat(
 
 for chunk in res:
     print(chunk["message"]["content"], end="", flush=True)
-'''
+
 
 #3 Create a model file with in-line model definition
-'''
 
+'''
 model_file = """
 FROM llama3.2
 SYSTEM You are a smart assitant who is very knowledgeable about stoicism. You are very pragmatic.
