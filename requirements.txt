@@ -13,3 +13,16 @@ requests==2.32.3
 sniffio==1.3.1
 typing_extensions==4.12.2
 urllib3==2.3.0
+chromadb
+pdfplumber 
+langchain
+langchain-core
+langchain-ollama
+langchain-community
+langchain_text_splitters
+unstructured
+unstructured[all-docs]
+fastembed
+pdfplumber
+sentence-transformers
+elevenlabs
