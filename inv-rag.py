@@ -19,7 +19,7 @@ if os.path.exists(doc_path):
     images_path = []
 
     for i, image in enumerate(images):
-        image_path = f"./invoices-images/{i}.png"
+        image_path = f"./invoices-images/{doc_path.split('/')[-1].split('.')[0]}.png"
         image.save(image_path, "PNG")
         images_path.append(image_path)
 
@@ -29,6 +29,7 @@ if os.path.exists(doc_path):
     print("Loader created successfully")
     
     try:
+        print("Attempting to load the image...")
         data = loader.load()
         print("Document loaded successfully")
         print(data)
