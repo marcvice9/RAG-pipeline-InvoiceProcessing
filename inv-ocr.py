@@ -3,6 +3,8 @@ from langchain_community.document_loaders import UnstructuredPDFLoader
 from langchain_community.document_loaders import OnlinePDFLoader
 from langchain_community.document_loaders import PyMuPDFLoader
 from langchain_community.document_loaders.image import UnstructuredImageLoader
+import pytesseract
+from PIL import Image
 from pdf2image import convert_from_path
 import os
 
@@ -19,15 +21,21 @@ if os.path.exists(doc_path):
     images_path = []
 
     for i, image in enumerate(images):
-        image_name = doc_path.split('/')[-1].split('.')[0]
-        image_path = os.path.abspath(f"./invoices-images/{image_name}.png")
+        image_path = f"./invoices-images/{doc_path.split('/')[-1].split('.')[0]}.png"
         image.save(image_path, "PNG")
         images_path.append(image_path)
 
     print(f"Converted {len(images)} pages to images.")
     
-    loader = UnstructuredImageLoader(file_path=images_path[0])
-    print("Loader created successfully")
+    if not os.path.exists(images_path[0]):
+        print(f"Error: Image file '{images_path[0]}' not found!")
+    else:
+        print(f"Image file exists: {images_path[0]}")
+
+    image = Image.open(os.path.abspath(images_path[0]))
+    ocr_text = pytesseract.image_to_string(image)
+    print("ocr text created successfully")
+    print(ocr_text)
     
     try:
         print("Attempting to load the image...")
