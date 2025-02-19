@@ -3,3 +3,5 @@ invoices/
 Release-24.08.0-0/
 invoices-images/
 config/
+cfg/
+cfg/config.py
